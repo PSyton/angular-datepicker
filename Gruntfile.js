@@ -154,6 +154,12 @@ module.exports = function (grunt) {
         cwd: '<%= yeoman.app %>/styles',
         dest: '<%= yeoman.tmp %>/styles/',
         src: '{,*/}*.css'
+      },
+      fonts: {
+        expand: true,
+        cwd: '<%= yeoman.app %>/styles/fonts',
+        dest: '<%= yeoman.dist %>/fonts/',
+        src: '{,*/}*.*'
       }
     },
     ngtemplates: {
@@ -168,7 +174,6 @@ module.exports = function (grunt) {
         },
         src: '<%= yeoman.app %>/templates/*.html',
         dest: '<%= yeoman.tmp %>/templates.js'
-
       }
     },
     concurrent: {
@@ -180,7 +185,8 @@ module.exports = function (grunt) {
         'copy:styles'
       ],
       dist: [
-        'copy:styles'
+        'copy:styles',
+        'copy:fonts'
       ]
     },
     concat: {
@@ -233,6 +239,7 @@ module.exports = function (grunt) {
     'jshint',
     'clean:dist',
     'less',
+    'copy:fonts',
     'ngtemplates',
     'concat',
     'cssmin',

@@ -23,7 +23,7 @@ angular.module('datePicker').factory('datePickerUtils', function () {
       }
       return minutes;
     },
-    getVisibleWeeks: function (m) {
+    getVisibleDays: function (m) {
       m = moment(m);
       var startYear = m.year(),
           startMonth = m.month();
@@ -37,16 +37,15 @@ angular.module('datePicker').factory('datePickerUtils', function () {
       //Go back the required number of days to arrive at the previous week start
       m.date(firstDay - (day + (firstDay >= day ? 6 : -1)));
 
-      var weeks = [];
-
-      while (weeks.length < 6) {
-        if (m.year() === startYear && m.month() > startMonth) {
+      var days = [];
+      for (var i = 0; i < 6; i++) {
+        if ((m.year()*100 + m.month()) > (startYear*100 + startMonth)) {
           break;
         }
-        weeks.push(this.getDaysOfWeek(m));
+        Array.prototype.push.apply(days, this.getDaysOfWeek(m));
         m.add(7, 'd');
       }
-      return weeks;
+      return days;
     },
     getVisibleYears: function (d) {
       var m = moment(d),
@@ -201,8 +200,8 @@ angular.module('datePicker').factory('datePickerUtils', function () {
       if (tz) {
         return moment.tz(m, tz);
       } else {
-        //If input is a moment, and we have no TZ info, we need to remove TZ 
-        //info from the moment, otherwise the newly created moment will take 
+        //If input is a moment, and we have no TZ info, we need to remove TZ
+        //info from the moment, otherwise the newly created moment will take
         //the timezone of the input moment. The easiest way to do that is to
         //take the unix timestamp, and use that to create a new moment.
         //The new moment will use the local timezone of the user machine.
@@ -226,6 +225,16 @@ angular.module('datePicker').factory('datePickerUtils', function () {
     eventIsForPicker: function (targetIDs, pickerID) {
       //Checks if an event targeted at a specific picker, via either a string name, or an array of strings.
       return (angular.isArray(targetIDs) && targetIDs.indexOf(pickerID) > -1 || targetIDs === pickerID);
+    },
+    isValidDate : function(value) {
+      // Invalid Date: getTime() returns NaN
+      return value && !(value.getTime && value.getTime() !== value.getTime());
+    },
+    formatDate: function (aDate, aFormat, aTz) {
+      if (!(moment.isMoment(aDate))) {
+        return moment(aDate).format(aFormat);
+      }
+      return aTz ? moment.tz(aDate, aTz).format(aFormat) : aDate.format(aFormat);
     }
   };
 });

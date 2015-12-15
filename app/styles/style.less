@@ -1,123 +1,199 @@
-@import "variables.less";
-@import "mixins.less";
-
-.date-picker-date-time {		
-  position: absolute;		
+@font-face {
+  font-family: "DTPickerIcons";
+  src:url("fonts/date-time-picker.eot");
+  src:url("onts/date-time-picker.eot?#iefix") format("embedded-opentype"),
+    url("fonts/date-time-picker.woff") format("woff"),
+    url("fonts/date-time-picker.ttf") format("truetype"),
+    url("fonts/date-time-picker.svg#date-time-picker") format("svg");
+  font-weight: normal;
+  font-style: normal;
 }
 
-.date-range .date-picker-date-time {
-	position: inherit;
-}
-
-[date-picker-wrapper] {
-  position: absolute;
-  min-width: 220px;
-  z-index: 10;
-  display: block;
-  font-size: 14px;
-}
-[date-time-append] [date-picker-wrapper] [date-picker] {
-  margin-top: -30px;
-}
-
-[date-time-append] [date-picker]{
-  position: relative;
-  margin-right: -1000px;
-  margin-bottom: -1000px;
-}
-
-[date-range] [date-picker] {
-  .after.before{
-    .buttonBackground(@btnInfoBackground, spin(@btnInfoBackgroundHighlight, 20));
-  }
-}
-
-[date-picker].hidden { display: none; }
-
-[date-picker] {
-  .user-select(none);
-  .border-radius(4px);
-  background-color: #fff;
-
-  /* GENERAL */
-
-  padding: 4px;
-
-  table {
-    margin: 0;
-  }
-
-  td, th {
-    padding: 4px 5px;
+.date-time-picker .header i.icon {
+    display: inline-block;
+    margin: 0 .25rem 0 0;
+    width: 1.23em;
+    height: .9em;
+    font-family: DTPickerIcons;
+    line-height: 1;
+    font-weight: 400;
+    text-decoration: inherit;
     text-align: center;
-    width: 20px;
-    height: 20px;
-    .border-radius(4px);
-    border: none;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
 
-  }
+.date-time-picker .header i.icon:before {
+  background: 0 0;
+}
 
-  .switch{
-    width: 145px;
-  }
+.date-time-picker .header i.icon.close:before {
+  content: "\e04a";
+}
 
-  span {
-      display: block;
-			width: 23%;
-			height: 26px;
-			line-height: 25px;
-			float: left;
-			margin: 1%;
-			cursor: pointer;
-			.border-radius(4px);
-			&:hover {
-				background: @grayLighter;
-			}
-			&.disabled, &.disabled:hover {
-				background:none;
-				color: @grayLight;
-				cursor: default;
-			}
+.date-time-picker .header i.icon.prev:before {
+  content: "\e04d";
+}
 
-  }
+.date-time-picker .header i.icon.next:before {
+  content: "\e04e";
+}
 
-  .active , .now{
-    .buttonBackground(@btnPrimaryBackground, spin(@btnPrimaryBackground, 20));
-    color: #fff;
-    text-shadow: 0 -1px 0 rgba(0, 0, 0, .25);
-  }
+.date-time-picker .header i.icon.today:before {
+  content: "\e04c";
+}
 
-  .now {
-    .buttonBackground(@btnDangerBackground, spin(@btnDangerBackground, 20));
-  }
 
-  .disabled {
-    background: none;
-    color: #999999 !important;
-    cursor: default;
-  }
 
-  /* SPECIFIC */
+.data-time-picker-popup {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1900;
+  border: 1px solid #CCC;
+  background-color: #FFF;
+  padding: .3em;
+  font-weight: 400;
+  color: rgba(0,0,0,.8);
+  border-radius: .2857rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,.1);
+  margin: 0;
+  font-size: .85714rem;
+}
 
-  [ng-switch-when="year"], [ng-switch-when="month"], [ng-switch-when="minutes"]{
-    span {
-      height: 54px;
-      line-height: 54px;
-    }
-  }
-  [ng-switch-when="date"]{
-    td {
-      padding: 0;
-    }
-    span{
-      width: 100%;
-      height: 26px;
-      line-height: 26px;
-    }
-  }
+.data-time-picker-popup.top {
+  margin: .75em 0 0;
+}
 
-  th:hover, [ng-switch-when="date"] td span:hover{
-    background: @grayLighter;
-	  cursor: pointer;
-  }
+.data-time-picker-popup.left {
+  margin-left: 0;
+}
+
+.data-time-picker-popup.left:before {
+  left: 1em;
+  right: auto;
+  margin-left: 0;
+}
+
+.data-time-picker-popup.center:before,
+.data-time-picker-popup.left:before,
+.data-time-picker-popup.right:before {
+  top: -.325em;
+  bottom: auto;
+  box-shadow: -1px -1px 0 0 #b3b3b3;
+}
+
+.data-time-picker-popup:before {
+  position: absolute;
+  content: '';
+  width: .75em;
+  height: .75em;
+  background: #FFF;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+  z-index: 2;
+  box-shadow: 1px 1px 0 0 #b3b3b3;
+}
+
+.date-time-picker {
+  width: 250px;
+}
+
+.date-time-picker .header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.date-time-picker .header div,
+.date-time-picker .items div {
+  cursor: pointer;
+}
+
+.date-time-picker .items.weekdays div {
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 1.1em;
+  cursor: default;
+}
+
+.date-time-picker .items.weekdays div:hover {
+  text-decoration: none;
+  border-color: transparent;
+}
+
+.date-time-picker .header div {
+  color: rgba(0,0,0,.45);
+  font-size: 1.2rem;
+  min-height: 1.5em;
+  vertical-align: middle;
+}
+
+.date-time-picker .header .title {
+  font-weight: bold;
+  flex-grow: 1;
+}
+
+.date-time-picker .header div:hover {
+  color: rgba(0,0,0,.9);
+}
+
+.date-time-picker .header div:hover,
+.date-time-picker .items div:hover {
+  text-decoration: underline;
+  border-color: rgba(0,0,0,.45);
+}
+
+.date-time-picker .items {
+  flex-direction: row;
+  flex-wrap: wrap;
+  display: flex;
+  align-items: center;
+  align-content: center;
+  justify-content: space-between;
+}
+
+.date-time-picker .items div {
+  text-align: center;
+  width: 25%;
+  border: 1px solid transparent;
+}
+
+.date-time-picker .items.months div {
+  width: 30%;
+}
+
+.date-time-picker .items.date div,
+.date-time-picker .items.weekdays div {
+  width: 14%;
+}
+
+.date-time-picker .items .active {
+  background-color: #ffe3e4;
+}
+
+.date-time-picker .items .now {
+  border-color: #B13D40;
+}
+
+.date-time-picker .items .weekend {
+  color: #B13D40;
+}
+
+.date-time-picker .items .disabled {
+  opacity: 0.5;
+}
+
+.date-time-picker .items .invalid {
+  opacity: 1;
+  color: rgba(0,0,0,.7);
+  background-color: rgba(0,0,0,.07);
+  cursor: default;
+}
+
+.date-time-picker .items .invalid:hover {
+  text-decoration: none;
 }

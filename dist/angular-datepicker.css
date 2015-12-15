@@ -1,226 +1,163 @@
-.clearfix {
-  *zoom: 1;
+@font-face {
+  font-family: "DTPickerIcons";
+  src: url("fonts/date-time-picker.eot");
+  src: url("onts/date-time-picker.eot?#iefix") format("embedded-opentype"), url("fonts/date-time-picker.woff") format("woff"), url("fonts/date-time-picker.ttf") format("truetype"), url("fonts/date-time-picker.svg#date-time-picker") format("svg");
+  font-weight: normal;
+  font-style: normal;
 }
-.clearfix:before,
-.clearfix:after {
-  display: table;
-  content: "";
-  line-height: 0;
-}
-.clearfix:after {
-  clear: both;
-}
-.hide-text {
-  font: 0/0 a;
-  color: transparent;
-  text-shadow: none;
-  background-color: transparent;
-  border: 0;
-}
-.input-block-level {
-  display: block;
-  width: 100%;
-  min-height: 30px;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-}
-.date-picker-date-time {
-  position: absolute;
-}
-.date-range .date-picker-date-time {
-  position: inherit;
-}
-[date-picker-wrapper] {
-  position: absolute;
-  min-width: 220px;
-  z-index: 10;
-  display: block;
-  font-size: 14px;
-}
-[date-time-append] [date-picker-wrapper] [date-picker] {
-  margin-top: -30px;
-}
-[date-time-append] [date-picker] {
-  position: relative;
-  margin-right: -1000px;
-  margin-bottom: -1000px;
-}
-[date-range] [date-picker] .after.before {
-  color: #ffffff;
-  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
-  background-color: #499dcd;
-  background-image: -moz-linear-gradient(top, #5bc0de, #2f6ab4);
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#5bc0de), to(#2f6ab4));
-  background-image: -webkit-linear-gradient(top, #5bc0de, #2f6ab4);
-  background-image: -o-linear-gradient(top, #5bc0de, #2f6ab4);
-  background-image: linear-gradient(to bottom, #5bc0de, #2f6ab4);
-  background-repeat: repeat-x;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff5bc0de', endColorstr='#ff2f6ab4', GradientType=0);
-  border-color: #2f6ab4 #2f6ab4 #1f4677;
-  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
-  *background-color: #2f6ab4;
-  /* Darken IE7 buttons by default so they stand out more given they won't have borders */
-  filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
-}
-[date-range] [date-picker] .after.before:hover,
-[date-range] [date-picker] .after.before:active,
-[date-range] [date-picker] .after.before.active,
-[date-range] [date-picker] .after.before.disabled,
-[date-range] [date-picker] .after.before[disabled] {
-  color: #ffffff;
-  background-color: #2f6ab4;
-  *background-color: #2a5ea0;
-}
-[date-range] [date-picker] .after.before:active,
-[date-range] [date-picker] .after.before.active {
-  background-color: #24528c \9;
-}
-[date-picker].hidden {
-  display: none;
-}
-[date-picker] {
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  -o-user-select: none;
-  user-select: none;
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
-  border-radius: 4px;
-  background-color: #fff;
-  /* GENERAL */
-  padding: 4px;
-  /* SPECIFIC */
-}
-[date-picker] table {
-  margin: 0;
-}
-[date-picker] td,
-[date-picker] th {
-  padding: 4px 5px;
+.date-time-picker .header i.icon {
+  display: inline-block;
+  margin: 0 .25rem 0 0;
+  width: 1.23em;
+  height: .9em;
+  font-family: DTPickerIcons;
+  line-height: 1;
+  font-weight: 400;
+  text-decoration: inherit;
   text-align: center;
-  width: 20px;
-  height: 20px;
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
-  border-radius: 4px;
-  border: none;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
 }
-[date-picker] .switch {
-  width: 145px;
+.date-time-picker .header i.icon:before {
+  background: 0 0;
 }
-[date-picker] span {
+.date-time-picker .header i.icon.close:before {
+  content: "\e04a";
+}
+.date-time-picker .header i.icon.prev:before {
+  content: "\e04d";
+}
+.date-time-picker .header i.icon.next:before {
+  content: "\e04e";
+}
+.date-time-picker .header i.icon.today:before {
+  content: "\e04c";
+}
+.data-time-picker-popup {
   display: block;
-  width: 23%;
-  height: 26px;
-  line-height: 25px;
-  float: left;
-  margin: 1%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1900;
+  border: 1px solid #CCC;
+  background-color: #FFF;
+  padding: .3em;
+  font-weight: 400;
+  color: rgba(0, 0, 0, 0.8);
+  border-radius: .2857rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin: 0;
+  font-size: .85714rem;
+}
+.data-time-picker-popup.top {
+  margin: .75em 0 0;
+}
+.data-time-picker-popup.left {
+  margin-left: 0;
+}
+.data-time-picker-popup.left:before {
+  left: 1em;
+  right: auto;
+  margin-left: 0;
+}
+.data-time-picker-popup.center:before,
+.data-time-picker-popup.left:before,
+.data-time-picker-popup.right:before {
+  top: -0.325em;
+  bottom: auto;
+  box-shadow: -1px -1px 0 0 #b3b3b3;
+}
+.data-time-picker-popup:before {
+  position: absolute;
+  content: '';
+  width: .75em;
+  height: .75em;
+  background: #FFF;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+  z-index: 2;
+  box-shadow: 1px 1px 0 0 #b3b3b3;
+}
+.date-time-picker {
+  width: 250px;
+}
+.date-time-picker .header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.date-time-picker .header div,
+.date-time-picker .items div {
   cursor: pointer;
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
-  border-radius: 4px;
 }
-[date-picker] span:hover {
-  background: #eeeeee;
-}
-[date-picker] span.disabled,
-[date-picker] span.disabled:hover {
-  background: none;
-  color: #999999;
+.date-time-picker .items.weekdays div {
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 1.1em;
   cursor: default;
 }
-[date-picker] .active,
-[date-picker] .now {
-  color: #ffffff;
-  background-color: #006dcc;
-  background-image: -moz-linear-gradient(top, #0088cc, #0044cc);
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#0088cc), to(#0044cc));
-  background-image: -webkit-linear-gradient(top, #0088cc, #0044cc);
-  background-image: -o-linear-gradient(top, #0088cc, #0044cc);
-  background-image: linear-gradient(to bottom, #0088cc, #0044cc);
-  background-repeat: repeat-x;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff0088cc', endColorstr='#ff0044cc', GradientType=0);
-  border-color: #0044cc #0044cc #002a80;
-  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
-  *background-color: #0044cc;
-  /* Darken IE7 buttons by default so they stand out more given they won't have borders */
-  filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
-  color: #fff;
-  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+.date-time-picker .items.weekdays div:hover {
+  text-decoration: none;
+  border-color: transparent;
 }
-[date-picker] .active:hover,
-[date-picker] .now:hover,
-[date-picker] .active:active,
-[date-picker] .now:active,
-[date-picker] .active.active,
-[date-picker] .now.active,
-[date-picker] .active.disabled,
-[date-picker] .now.disabled,
-[date-picker] .active[disabled],
-[date-picker] .now[disabled] {
-  color: #ffffff;
-  background-color: #0044cc;
-  *background-color: #003bb3;
+.date-time-picker .header div {
+  color: rgba(0, 0, 0, 0.45);
+  font-size: 1.2rem;
+  min-height: 1.5em;
+  vertical-align: middle;
 }
-[date-picker] .active:active,
-[date-picker] .now:active,
-[date-picker] .active.active,
-[date-picker] .now.active {
-  background-color: #003399 \9;
+.date-time-picker .header .title {
+  font-weight: bold;
+  flex-grow: 1;
 }
-[date-picker] .now {
-  color: #ffffff;
-  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
-  background-color: #ee735b;
-  background-image: -moz-linear-gradient(top, #ee5f5b, #ee905b);
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ee5f5b), to(#ee905b));
-  background-image: -webkit-linear-gradient(top, #ee5f5b, #ee905b);
-  background-image: -o-linear-gradient(top, #ee5f5b, #ee905b);
-  background-image: linear-gradient(to bottom, #ee5f5b, #ee905b);
-  background-repeat: repeat-x;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffee5f5b', endColorstr='#ffee905b', GradientType=0);
-  border-color: #ee905b #ee905b #e56218;
-  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
-  *background-color: #ee905b;
-  /* Darken IE7 buttons by default so they stand out more given they won't have borders */
-  filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
+.date-time-picker .header div:hover {
+  color: rgba(0, 0, 0, 0.9);
 }
-[date-picker] .now:hover,
-[date-picker] .now:active,
-[date-picker] .now.active,
-[date-picker] .now.disabled,
-[date-picker] .now[disabled] {
-  color: #ffffff;
-  background-color: #ee905b;
-  *background-color: #ec8044;
+.date-time-picker .header div:hover,
+.date-time-picker .items div:hover {
+  text-decoration: underline;
+  border-color: rgba(0, 0, 0, 0.45);
 }
-[date-picker] .now:active,
-[date-picker] .now.active {
-  background-color: #e9712d \9;
+.date-time-picker .items {
+  flex-direction: row;
+  flex-wrap: wrap;
+  display: flex;
+  align-items: center;
+  align-content: center;
+  justify-content: space-between;
 }
-[date-picker] .disabled {
-  background: none;
-  color: #999999 !important;
+.date-time-picker .items div {
+  text-align: center;
+  width: 25%;
+  border: 1px solid transparent;
+}
+.date-time-picker .items.months div {
+  width: 30%;
+}
+.date-time-picker .items.date div,
+.date-time-picker .items.weekdays div {
+  width: 14%;
+}
+.date-time-picker .items .active {
+  background-color: #ffe3e4;
+}
+.date-time-picker .items .now {
+  border-color: #B13D40;
+}
+.date-time-picker .items .weekend {
+  color: #B13D40;
+}
+.date-time-picker .items .disabled {
+  opacity: 0.5;
+}
+.date-time-picker .items .invalid {
+  opacity: 1;
+  color: rgba(0, 0, 0, 0.7);
+  background-color: rgba(0, 0, 0, 0.07);
   cursor: default;
 }
-[date-picker] [ng-switch-when="year"] span,
-[date-picker] [ng-switch-when="month"] span,
-[date-picker] [ng-switch-when="minutes"] span {
-  height: 54px;
-  line-height: 54px;
-}
-[date-picker] [ng-switch-when="date"] td {
-  padding: 0;
-}
-[date-picker] [ng-switch-when="date"] span {
-  width: 100%;
-  height: 26px;
-  line-height: 26px;
-}
-[date-picker] th:hover,
-[date-picker] [ng-switch-when="date"] td span:hover {
-  background: #eeeeee;
-  cursor: pointer;
+.date-time-picker .items .invalid:hover {
+  text-decoration: none;
 }

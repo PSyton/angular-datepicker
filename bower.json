@@ -1,10 +1,14 @@
 {
   "name": "angular-datepicker",
   "license": "MIT",
-  "version": "2.0.4",
+  "version": "2.1.0",
   "main": [
     "./dist/angular-datepicker.js",
-    "./dist/angular-datepicker.css"
+    "./dist/angular-datepicker.css",
+    "./dist/fonts/date-time-picker.eot",
+    "./dist/fonts/date-time-picker.svg",
+    "./dist/fonts/date-time-picker.ttf",
+    "./dist/fonts/date-time-picker.woff"
   ],
   "ignore": [
     ".gitignore",
@@ -28,7 +32,6 @@
   "devDependencies": {
     "angular": "1.2.14",
     "angular-mocks": "1.2.14",
-    "angular-scenario": "1.2.14",
-    "angular-bootstrap": "~0.3.0"
+    "angular-scenario": "1.2.14"
   }
 }
