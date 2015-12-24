@@ -4,7 +4,7 @@
 var Module = angular.module('datePicker');
 
 Module.constant('dateTimeConfig', {
-  template: function (attrs, id) {
+  template: function (attrs) {
     return '' +
         '<div ' +
         'date-picker="' + attrs.ngModel + '" ' +

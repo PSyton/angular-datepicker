@@ -48,7 +48,6 @@ Module.directive('datePicker', ['datePickerConfig', 'datePickerUtils', function 
 
   //noinspection JSUnusedLocalSymbols
   return {
-    // this is a bug ?
     require: '?ngModel',
     template: '<div ng-include="template"></div>',
     scope: {
@@ -75,8 +74,7 @@ Module.directive('datePicker', ['datePickerConfig', 'datePickerUtils', function 
         return datePickerUtils.getDate(scope, attrs, name);
       }
 
-      var //arrowClick = false,
-        tz = scope.tz = attrs.timezone,
+      var tz = scope.tz = attrs.timezone,
         createMoment = datePickerUtils.createMoment,
         eventIsForPicker = datePickerUtils.eventIsForPicker,
         step = parseInt(attrs.step || datePickerConfig.step, 10),
@@ -732,10 +730,9 @@ Module.directive('dateRange', ['$compile', 'datePickerUtils', 'dateTimeConfig', 
 var Module = angular.module('datePicker');
 
 Module.constant('dateTimeConfig', {
-  template: function (attrs, id) {
+  template: function (attrs) {
     return '' +
         '<div ' +
-        (id ? 'id="' + id + '" ' : '') +
         'date-picker="' + attrs.ngModel + '" ' +
         'close="closePicker" ' +
         (attrs.view ? 'view="' + attrs.view + '" ' : '') +
@@ -941,20 +938,11 @@ Module.directive('dateTime', [
             }
           });
 
-          scope.$on('hidePicker', function (event, pickerIDs) {
-            if (eventIsForPicker(pickerIDs, pickerID)) {
-              clear();
-            }
-          });
-
           scope.$on('$destroy', clear);
-
           shownOnce = true;
         }
 
-
         // move picker below input element
-
         if (position === 'absolute') {
           var pos = element[0].getBoundingClientRect();
           // Support IE8
