@@ -103,8 +103,6 @@ Module.directive('datePicker', ['datePickerConfig', 'datePickerUtils', function 
         scope.date = now.clone();
       }
 
-      scope.date = (ngModel ? ngModel.$modelValue : null) || now;
-
       datePickerUtils.setParams(tz, firstDay);
 
       scope.template = attrs.template || datePickerConfig.template;
