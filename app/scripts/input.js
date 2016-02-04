@@ -52,7 +52,7 @@ Module.directive('dateTime', [
       require: 'ngModel',
       scope: true,
       link: function (scope, element, attrs, ngModel) {
-        var format = dateTimeConfig.format,
+        var format = attrs.format || dateTimeConfig.format,
           autoClose = attrs.autoClose ? $parse(attrs.autoClose)(scope) : dateTimeConfig.autoClose,
           picker = null,
           pickerID = element[0].id,
@@ -82,12 +82,11 @@ Module.directive('dateTime', [
       }
 
       function parser(viewValue) {
-        if (viewValue.length === format.length) {
-          var m = moment(viewValue, format, true);
-          if (m.isValid()) {
-            return m.toDate();
-          }
-        } else if (viewValue.length === 0) {
+        var m = moment(viewValue, format, true);
+        if (m.isValid()) {
+          return m.toDate();
+        }
+        if (viewValue.length === 0) {
           return null; // value has been cleared, it shouldn't null; not an empty string.
         }
         return undefined;
