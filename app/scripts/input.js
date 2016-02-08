@@ -86,9 +86,9 @@ Module.directive('dateTime', [
         if (m.isValid()) {
           return m.toDate();
         }
-        if (viewValue.length === 0) {
-          return null; // value has been cleared, it shouldn't null; not an empty string.
-        }
+        //if (viewValue.length === 0) {
+        //  return null; // value has been cleared, it shouldn't null; not an empty string.
+        //}
         return undefined;
       }
 
